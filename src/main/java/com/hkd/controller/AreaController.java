@@ -2,8 +2,6 @@ package com.hkd.controller;
 
 import com.hkd.dao.AreaDao;
 import com.hkd.domain.Area;
-import com.hkd.domain.AreaHistory;
-import com.hkd.mapper.SelectAreaHistoryParam;
 import com.hkd.mapper.SelectAreaProductShopByCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
