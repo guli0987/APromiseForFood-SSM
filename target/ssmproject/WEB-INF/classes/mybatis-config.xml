@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--在使用MyBatis嵌套查询方式进行关联查询时，使用MyBatis的延迟加载可以在一定程度上提高查询效率-->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--<setting name="logImpl" value="LOG4J"/>-->
+        <!--打开延迟加载的开关-->
+        <setting name= "lazyLoadingEnabled" value= "true"/>
+        <!--将积极加载改为按需加载-->
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+    <!--优化别名 配置类型别名，可以在xml中用别名取代全限定名-->
+    <!--<typeAliases>
+        <typeAlias type="cn.hkd.pojo.City" alias="city"/>
+    </typeAliases>-->
+    <!-- 加载映射文件 -->
+    <mappers>
+        <!-- 通过 resource 方法一次加载一个映射文件 -->
+        <mapper resource="com/hkd/mapper/CityMapper.xml"/>
+        <mapper resource="com/hkd/mapper/AreaMapper.xml"/>
+        <!-- 批量加载mapper -->
+        <!--<package name="com.hkd.mapper"/>-->
+    </mappers>
+</configuration>

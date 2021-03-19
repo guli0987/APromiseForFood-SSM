@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hkd.dao.ProductShopDao">
+    <resultMap id="productShopListMapping" type="com.hkd.domain.ProductShop">
+        <id property="productShopId" column="product_shop_id"/>
+        <result property="productShopAvatar" column="product_shop_avatar"/>
+        <result property="productShopName" column="product_shop_name"/>
+        <result property="productShopHot" column="product_shop_is_hot"/>
+        <result property="productShopImg" column="product_shop_img"/>
+        <result property="productShopExtra" column="product_shop_extra"/>
+        <result property="areaCode" column="area_code"/>
+    </resultMap>
+    <!-- 根据用户area_code查询商店信息 -->
+    <select id="selectProductShopByAreaCode" parameterType="Integer" resultType="com.hkd.domain.ProductShop" resultMap="productShopListMapping">
+        select * from product_shop where area_code = #{code}
+    </select>
+</mapper>
