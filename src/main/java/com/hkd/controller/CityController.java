@@ -35,6 +35,8 @@ public class CityController {
 
         return Msg.success().add("result",cities);
     }
+
+
     public void test(){
         List<City> cities=cityService.getCityList();
         System.out.println(cities);

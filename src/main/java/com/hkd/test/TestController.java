@@ -13,8 +13,8 @@ public class TestController {
         /*CityController uc = (CityController) applicationContext
                 .getBean("cityController");
         uc.test();*/
-        AreaController ac = (AreaController) applicationContext
+        /*AreaController ac = (AreaController) applicationContext
                 .getBean("areaController");
-        ac.test();
+        ac.test();*/
     }
 }

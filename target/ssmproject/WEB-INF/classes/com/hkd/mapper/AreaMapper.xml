@@ -1,16 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hkd.dao.AreaDao">
-
-    <select id="selectAreaListByAreaTypeAndCityId" parameterType="com.hkd.mapper.SelectAreaParam" resultType="com.hkd.domain.Area">
-        <!-- 查询所有区域信息 -->
-        select * from area_location where area_type_id = #{areaTypeId}
-                                      and city_id = #{cityId}
-    </select>
-    <select id="selectAreaListByCityId" resultType="com.hkd.domain.Area">
-        select * from area_location where city_id = #{cityId}
-    </select>
+    <!--查询所有区域信息-->
     <select id="selectAllArea" resultType="com.hkd.domain.Area">
         select * from area_location
+    </select>
+
+    <select id="selectAreaById" parameterType="Integer" resultType="com.hkd.domain.Area">
+        <!-- 查询所有区域信息 -->
+        select * from area_location where area_id = #{id}
+    </select>
+    <select id="selectAreaByCode" parameterType="Integer" resultType="com.hkd.domain.Area">
+        select * from area_location where area_code = #{code}
+    </select>
+    <!-- 一对多 根据area_code查询区域信息及其关联的商店信息：级联查询的第一种方法（嵌套查询） -->
+    <resultMap id="areaAndProductShopList1" type="com.hkd.domain.Area">
+        <id property="areaId" column="area_id"/>
+        <result property="areaName" column="area_name"/>
+        <result property="areaCode" column="area_code"/>
+        <!-- 一对多级联查询，ofType表示集合中的元素类型，将area_code传递给selectProductShopByAreaCode -->
+        <collection property="productShopList" ofType="com.hkd.domain.ProductShop"
+                    column="area_code" select="com.hkd.dao.ProductShopDao.selectProductShopByAreaCode"/>
+    </resultMap>
+
+    <select id="selectAreaProductShopListByCode" parameterType="Integer" resultMap="areaAndProductShopList1">
+        select * from area_location where area_code = #{code}
+    </select>
+    <!--对多 根据area_code查询区域信息及其关联的商店信息：级联查询的第二种方法（嵌套结果） -->
+    <resultMap id="areaAndProductShopList2" type="com.hkd.domain.Area">
+        <id property="areaId" column="area_id"/>
+        <result property="areaName" column="area_name"/>
+        <result property="areaCode" column="area_code"/>
+        <!-- 一对多级联查询，ofType表示集合中的元素类型-->
+        <collection property="productShopList" ofType="com.hkd.domain.ProductShop">
+            <id property="productShopId" column="product_shop_id"/>
+            <result property="productShopAvatar" column="product_shop_avatar"/>
+            <result property="productShopName" column="product_shop_name"/>
+            <result property="productShopHot" column="product_shop_is_hot"/>
+            <result property="productShopImg" column="product_shop_img"/>
+            <result property="productShopExtra" column="product_shop_extra"/>
+            <result property="areaCode" column="area_code"/>
+        </collection>
+    </resultMap>
+    <select id="selectAreaProductShopListByCode2" parameterType="Integer" resultMap="areaAndProductShopList2">
+        select a.*,p.* from area_location a,product_shop p where a.area_code = p.area_code and a.area_code = #{code}
+    </select>
+    <!-- 一对多 根据area_code查询区域信息及其关联的商店信息：连接查询 第三种方法（使用POJO存储结果） -->
+    <select id="selectAreaProductShopListByCode3" parameterType="Integer"
+            resultType="com.hkd.mapper.SelectAreaProductShopByCode">
+        select a.*,p.* from area_location a,product_shop p where a.area_code = p.area_code and a.area_code = #{code}
     </select>
 </mapper>

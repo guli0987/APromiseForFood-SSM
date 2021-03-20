@@ -33,7 +33,7 @@ public interface AreaDao {
      * @param code
      * @return
      */
-    List<Area> selectAreaProductShopListByCode1(Integer code);
+    List<Area> selectAreaProductShopListByCode(Integer code);
     /**
      * 通过区域码查询所属区域商店列表
      * @param code

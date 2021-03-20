@@ -23,7 +23,7 @@
                     column="area_code" select="com.hkd.dao.ProductShopDao.selectProductShopByAreaCode"/>
     </resultMap>
 
-    <select id="selectAreaProductShopListByCode1" parameterType="Integer" resultMap="areaAndProductShopList1">
+    <select id="selectAreaProductShopListByCode" parameterType="Integer" resultMap="areaAndProductShopList1">
         select * from area_location where area_code = #{code}
     </select>
     <!--对多 根据area_code查询区域信息及其关联的商店信息：级联查询的第二种方法（嵌套结果） -->
