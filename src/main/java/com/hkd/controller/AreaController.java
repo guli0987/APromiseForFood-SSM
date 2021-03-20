@@ -1,18 +1,16 @@
 package com.hkd.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.hkd.dao.AreaDao;
 import com.hkd.domain.Area;
-import com.hkd.domain.City;
-import com.hkd.mapper.SelectAreaProductShopByCode;
 import com.hkd.service.AreaService;
 import com.hkd.utils.Msg;
-import jdk.nashorn.internal.objects.NativeJSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/area")
 @Controller("areaController")
@@ -33,6 +31,24 @@ public class AreaController {
         //得到区域数据
         List<Area> areas=areaService.getAreaProductShopListByCode(code);
         //System.out.println(JSON.toJSONString(areas)+"_____________________________________"+areas);
+        return Msg.success().add("result",JSON.toJSONString(areas));
+        //return null;
+    }
+
+    @CrossOrigin(origins = "*",maxAge = 3600)
+    @ResponseBody
+    @RequestMapping(value = "/getProductShopListLimitNumber",method = RequestMethod.GET,params = {"code","pageNum","pageSize"},headers = {})
+    public Msg getAreaProductShopListLimitNumber(@RequestParam Integer code,@RequestParam Integer pageNum,@RequestParam Integer pageSize){
+        System.out.println("————————————————————————————————————getProductShopListLimitNumber");
+        pageNum=(pageNum-1)*pageSize;//第几页
+        Map<String,Object> map = new HashMap<>();
+        map.put("code",code);
+        map.put("pageNum",pageNum);
+        map.put("pageSize",pageSize);
+        //得到区域数据
+        List<Area> areas=areaService.getAreaProductShopListByCodeLimitNumber(map);
+        System.out.println(JSON.toJSONString(areas)+"_____________________________________");
+
         return Msg.success().add("result",JSON.toJSONString(areas));
         //return null;
     }

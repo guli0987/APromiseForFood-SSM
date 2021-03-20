@@ -5,6 +5,7 @@ import com.hkd.mapper.SelectAreaProductShopByCode;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository("areaDao")
 public interface AreaDao {
@@ -34,6 +35,13 @@ public interface AreaDao {
      * @return
      */
     List<Area> selectAreaProductShopListByCode(Integer code);
+
+    /**
+     * 通过区域码查询所属区域商店列表 通过页数和每页个数限制查询返回数据
+     * Map中三个参数code pageNum pageSize
+     * @return
+     */
+    List<Area> selectAreaProductShopListByCodeLimitNumber(Map<String,Object> param);
     /**
      * 通过区域码查询所属区域商店列表
      * @param code
