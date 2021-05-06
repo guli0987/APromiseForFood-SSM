@@ -1,6 +1,7 @@
 package com.hkd.test;
 
 import com.hkd.controller.AreaController;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

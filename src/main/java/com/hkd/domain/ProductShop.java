@@ -1,15 +1,47 @@
 package com.hkd.domain;
 
-import java.util.List;
-
+/**
+ * 店铺信息
+ */
 public class ProductShop {
+    /**
+     * 店铺id
+     */
     private Integer productShopId;
+    /**
+     * 店铺头像
+     */
     private String productShopAvatar;
+    /**
+     * 店铺名
+     */
     private String productShopName;
+    /**
+     * 店铺是否热门
+     */
     private Integer productShopHot;
+    /**
+     * 店铺宣传图
+     */
     private String productShopImg;
+    /**
+     * 店铺额外信息
+     */
     private String productShopExtra;
+    /**
+     * 区域码
+     */
     private Integer areaCode;
+
+    public ProductShop(Integer productShopId, String productShopAvatar, String productShopName, Integer productShopHot, String productShopImg, String productShopExtra, Integer areaCode) {
+        this.productShopId = productShopId;
+        this.productShopAvatar = productShopAvatar;
+        this.productShopName = productShopName;
+        this.productShopHot = productShopHot;
+        this.productShopImg = productShopImg;
+        this.productShopExtra = productShopExtra;
+        this.areaCode = areaCode;
+    }
 
     public Integer getProductShopId() {
         return productShopId;

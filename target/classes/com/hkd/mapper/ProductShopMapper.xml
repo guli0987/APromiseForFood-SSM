@@ -14,4 +14,27 @@
     <select id="selectProductShopByAreaCode" parameterType="Integer" resultType="com.hkd.domain.ProductShop" resultMap="productShopListMapping">
         select * from product_shop where area_code = #{code}
     </select>
+    <!--根据店铺id查询店铺信息-->
+    <select id="selectProductShopById" parameterType="Integer" resultType="com.hkd.domain.ProductShop">
+        select * from product_shop where product_shop_id = #{id}
+    </select>
+    <!--根据店铺id更新店铺信息-->
+    <update id="updateProductShopById" parameterType="com.hkd.domain.ProductShop">
+        update product_shop set
+                                product_shop_avatar=#{productShopAvatar},
+                                product_shop_name=#{productShopName},
+                                product_shop_is_hot=#{productShopHot},
+                                product_shop_img=#{productShopImg},
+                                product_shop_extra=#{productShopExtra}
+        where product_shop_id=#{productShopId}
+    </update>
+    <!--根据店铺id删除店铺-->
+    <delete id="deleteProductShopById" parameterType="Integer">
+        delete from product_shop where product_shop_id = #{id}
+    </delete>
+    <!--新增店铺-->
+    <insert id="insertProductShop" parameterType="com.hkd.domain.ProductShop" keyProperty="product_shop_id">
+        insert into product_shop (product_shop_avatar,product_shop_name,product_shop_is_hot,product_shop_img,product_shop_extra,area_code)
+        values(#{productShopAvatar},#{productShopName},#{productShopHot},#{productShopImg},#{productShopExtra},#{areaCode})
+    </insert>
 </mapper>

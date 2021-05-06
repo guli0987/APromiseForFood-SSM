@@ -1,5 +1,7 @@
 package com.hkd.test;
 
+import com.hkd.dao.ProductShopDao;
+import com.hkd.domain.ProductShop;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -27,6 +29,9 @@ public class TestMybatis {
         AreaDao areaDao=sqlSession.getMapper(AreaDao.class);
         List<Area> cities=areaDao.selectAllAreas();
         System.out.println(cities);*/
+        /*ProductShopDao productShopDao=sqlSession.getMapper(ProductShopDao.class);
+        ProductShop productShop= (ProductShop) productShopDao.selectProductShopById(1);
+        System.out.println(productShop);*/
         sqlSession.close();
 
     }
