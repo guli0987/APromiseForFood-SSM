@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hkd.dao.ProductShopDao">
+
     <resultMap id="productShopListMapping" type="com.hkd.domain.ProductShop">
         <id property="productShopId" column="product_shop_id"/>
         <result property="productShopAvatar" column="product_shop_avatar"/>
@@ -14,10 +15,65 @@
     <select id="selectProductShopByAreaCode" parameterType="Integer" resultType="com.hkd.domain.ProductShop" resultMap="productShopListMapping">
         select * from product_shop where area_code = #{code}
     </select>
+
+
     <!--根据店铺id查询店铺信息-->
     <select id="selectProductShopById" parameterType="Integer" resultType="com.hkd.domain.ProductShop">
         select * from product_shop where product_shop_id = #{id}
     </select>
+
+
+    <!--查询商店和区域信息 方法1不行，因为Area中存在List-->
+<!--    <resultMap id="shopAndArea" type="com.hkd.domain.ProductShop">
+        <id property="productShopId" column="product_shop_id"/>
+        <result property="productShopAvatar" column="product_shop_avatar"/>
+        <result property="productShopName" column="product_shop_name"/>
+        <result property="productShopHot" column="product_shop_is_hot"/>
+        <result property="productShopImg" column="product_shop_img"/>
+        <result property="productShopExtra" column="product_shop_extra"/>
+        <association property="area" column="area_code" javaType="com.hkd.domain.Area" select="com.hkd.dao.AreaDao.selectAreaByCode"/>
+    </resultMap>
+    <select id="selectProductShopAndAreaById" parameterType="Integer" resultMap="shopAndArea">
+        select p.* from product_shop p where p.product_shop_id = #{id}
+    </select>-->
+
+
+    <!--<resultMap id="shopAndArea2" type="com.hkd.domain.ProductShop">
+        <id property="productShopId" column="product_shop_id"/>
+        <result property="productShopAvatar" column="product_shop_avatar"/>
+        <result property="productShopName" column="product_shop_name"/>
+        <result property="productShopHot" column="product_shop_is_hot"/>
+        <result property="productShopImg" column="product_shop_img"/>
+        <result property="productShopExtra" column="product_shop_extra"/>
+
+        <association property="area" javaType="com.hkd.domain.Area">
+            <result property="areaId" column="area_id"/>
+            <result property="areaName" column="area_name"/>
+            <result property="areaCode" column="area_code"/>
+        </association>
+    </resultMap>
+    <select id="selectProductShopAndAreaById2" parameterType="Integer" resultMap="shopAndArea2">
+        select a.*,p.* from area_location a,product_shop p where p.product_shop_id = #{id} and p.area_code = a.area_code
+    </select>-->
+    <!--存在isHot数据库和实体变量名称不同问题，映射失败-->
+    <resultMap id="getShopAndArea" type="com.hkd.mapper.SelectAreaProductShopByCode">
+        <id property="productShopId" column="product_shop_id"/>
+        <result property="productShopAvatar" column="product_shop_avatar"/>
+        <result property="productShopName" column="product_shop_name"/>
+        <result property="productShopHot" column="product_shop_is_hot"/>
+        <result property="productShopImg" column="product_shop_img"/>
+        <result property="productShopExtra" column="product_shop_extra"/>
+        <result property="areaCode" column="area_code"/>
+        <result property="areaId" column="area_id"/>
+        <result property="areaName" column="area_name"/>
+    </resultMap>
+    <select id="selectProductShopAndAreaById" parameterType="Integer" resultMap="getShopAndArea">
+        select a.*,p.* from area_location a,product_shop p
+        where p.product_shop_id = #{id}
+        and p.area_code = a.area_code
+    </select>
+
+
     <!--根据店铺id更新店铺信息-->
     <update id="updateProductShopById" parameterType="com.hkd.domain.ProductShop">
         update product_shop set
@@ -28,10 +84,14 @@
                                 product_shop_extra=#{productShopExtra}
         where product_shop_id=#{productShopId}
     </update>
+
+
     <!--根据店铺id删除店铺-->
     <delete id="deleteProductShopById" parameterType="Integer">
         delete from product_shop where product_shop_id = #{id}
     </delete>
+
+
     <!--新增店铺-->
     <insert id="insertProductShop" parameterType="com.hkd.domain.ProductShop" keyProperty="product_shop_id">
         insert into product_shop (product_shop_avatar,product_shop_name,product_shop_is_hot,product_shop_img,product_shop_extra,area_code)

@@ -5,10 +5,15 @@
     <select id="selectAllArea" resultType="com.hkd.domain.Area">
         select * from area_location
     </select>
+
+
     <!-- 通过id查询区域信息 -->
     <select id="selectAreaById" parameterType="Integer" resultType="com.hkd.domain.Area">
         select * from area_location where area_id = #{id}
     </select>
+
+
+    <!-- 通过区域码查询区域信息 -->
     <select id="selectAreaByCode" parameterType="Integer" resultType="com.hkd.domain.Area">
         select * from area_location where area_code = #{code}
     </select>
@@ -23,10 +28,11 @@
         <collection property="productShopList" ofType="com.hkd.domain.ProductShop"
                     column="area_code" select="com.hkd.dao.ProductShopDao.selectProductShopByAreaCode"/>
     </resultMap>
-
     <select id="selectAreaProductShopListByCode" parameterType="Integer" resultMap="areaAndProductShopList1">
         select * from area_location where area_code = #{code}
     </select>
+
+
     <!--对多 根据area_code查询区域信息及其关联的商店信息：级联查询的第二种方法（嵌套结果） -->
     <resultMap id="areaAndProductShopList2" type="com.hkd.domain.Area">
         <id property="areaId" column="area_id"/>
@@ -47,6 +53,8 @@
     <select id="selectAreaProductShopListByCode2" parameterType="Integer" resultMap="areaAndProductShopList2">
         select a.*,p.* from area_location a,product_shop p where a.area_code = p.area_code and a.area_code = #{code}
     </select>
+
+
     <!--限制一对多返回数据数-->
     <!--limit (#{pageNum}-1)*#{pageSize},#{pageSize}-->
     <select id="selectAreaProductShopListByCodeLimitNumber" resultMap="areaAndProductShopList2">

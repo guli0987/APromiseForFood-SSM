@@ -32,6 +32,11 @@ public class ProductShop {
      * 区域码
      */
     private Integer areaCode;
+    /**
+     * 区域信息
+     */
+    //
+
 
     public ProductShop(Integer productShopId, String productShopAvatar, String productShopName, Integer productShopHot, String productShopImg, String productShopExtra, Integer areaCode) {
         this.productShopId = productShopId;
@@ -106,7 +111,7 @@ public class ProductShop {
                 ", productShopAvatar='" + productShopAvatar + '\'' +
                 ", productShopName='" + productShopName + '\'' +
                 ", productShopHot=" + productShopHot +
-                ", productShopImg=" + productShopImg +
+                ", productShopImg='" + productShopImg + '\'' +
                 ", productShopExtra='" + productShopExtra + '\'' +
                 ", areaCode=" + areaCode +
                 '}';

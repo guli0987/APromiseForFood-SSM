@@ -1,6 +1,7 @@
 package com.hkd.dao;
 
 import com.hkd.domain.ProductShop;
+import com.hkd.mapper.SelectAreaProductShopByCode;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,6 +14,13 @@ public interface ProductShopDao {
      * @return
      */
     List<ProductShop> selectProductShopById(Integer id);
+
+    /**
+     * 通过店铺id查询商店信息，再通过信息中的区域码查询区域信息
+     * @param id
+     * @return
+     */
+    SelectAreaProductShopByCode selectProductShopAndAreaById(Integer id);
 
     /**
      * 通过店铺id更新商店信息

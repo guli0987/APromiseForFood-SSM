@@ -2,6 +2,7 @@ package com.hkd.service.impl;
 
 import com.hkd.dao.ProductShopDao;
 import com.hkd.domain.ProductShop;
+import com.hkd.mapper.SelectAreaProductShopByCode;
 import com.hkd.service.ProductShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,10 @@ public class ProductShopServiceImpl implements ProductShopService {
     @Override
     public Integer removeProductShopById(Integer id) {
         return productShopDao.deleteProductShopById(id);
+    }
+
+    @Override
+    public SelectAreaProductShopByCode getProductShopAndAreaById(Integer id) {
+        return productShopDao.selectProductShopAndAreaById(id);
     }
 }

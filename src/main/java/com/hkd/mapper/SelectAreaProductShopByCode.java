@@ -1,6 +1,5 @@
 package com.hkd.mapper;
 
-import java.util.List;
 
 public class SelectAreaProductShopByCode {
 
