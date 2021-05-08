@@ -32,6 +32,7 @@ public class ProductShopController {
         System.out.println("test:"+data.toString());
         return Msg.success().add("result", JSON.toJSONString(data));
     }
+
     /**
      * 根据id查询相关店铺信息,同时查询区域信息
      * @param id
