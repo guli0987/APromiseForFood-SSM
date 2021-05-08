@@ -2,7 +2,7 @@ package com.hkd.service.impl;
 
 import com.hkd.dao.ProductShopDao;
 import com.hkd.domain.ProductShop;
-import com.hkd.mapper.SelectAreaProductShopByCode;
+import com.hkd.domain.SelectAreaProductShopByCode;
 import com.hkd.service.ProductShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

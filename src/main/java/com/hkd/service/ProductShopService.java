@@ -1,7 +1,7 @@
 package com.hkd.service;
 
 import com.hkd.domain.ProductShop;
-import com.hkd.mapper.SelectAreaProductShopByCode;
+import com.hkd.domain.SelectAreaProductShopByCode;
 
 import java.util.List;
 

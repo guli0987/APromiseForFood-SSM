@@ -1,7 +1,7 @@
 package com.hkd.dao;
 
 import com.hkd.domain.Area;
-import com.hkd.mapper.SelectAreaProductShopByCode;
+import com.hkd.domain.SelectAreaProductShopByCode;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

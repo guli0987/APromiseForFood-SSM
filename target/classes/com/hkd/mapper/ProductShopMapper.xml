@@ -12,7 +12,7 @@
         <result property="areaCode" column="area_code"/>
     </resultMap>
     <!-- 根据用户area_code查询商店信息 -->
-    <select id="selectProductShopByAreaCode" parameterType="Integer" resultType="com.hkd.domain.ProductShop" resultMap="productShopListMapping">
+    <select id="selectProductShopByAreaCode" parameterType="Integer"  resultMap="productShopListMapping">
         select * from product_shop where area_code = #{code}
     </select>
 
@@ -56,7 +56,7 @@
         select a.*,p.* from area_location a,product_shop p where p.product_shop_id = #{id} and p.area_code = a.area_code
     </select>-->
     <!--存在isHot数据库和实体变量名称不同问题，映射失败-->
-    <resultMap id="getShopAndArea" type="com.hkd.mapper.SelectAreaProductShopByCode">
+    <resultMap id="getShopAndArea" type="com.hkd.domain.SelectAreaProductShopByCode">
         <id property="productShopId" column="product_shop_id"/>
         <result property="productShopAvatar" column="product_shop_avatar"/>
         <result property="productShopName" column="product_shop_name"/>

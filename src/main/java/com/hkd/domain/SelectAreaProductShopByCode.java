@@ -1,4 +1,4 @@
-package com.hkd.mapper;
+package com.hkd.domain;
 
 
 public class SelectAreaProductShopByCode {

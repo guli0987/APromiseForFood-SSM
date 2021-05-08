@@ -21,7 +21,8 @@
         <!-- 通过 resource 方法一次加载一个映射文件 -->
         <mapper resource="com/hkd/mapper/AreaMapper.xml"/>
         <mapper resource="com/hkd/mapper/ProductShopMapper.xml"/>
-        <!-- 批量加载mapper -->
+        <mapper resource="com/hkd/mapper/ProductShowMapper.xml"/>
+        <!-- 批量加载mapper 要与Dao在同一包 -->
         <!--<package name="com.hkd.mapper"/>-->
     </mappers>
 </configuration>

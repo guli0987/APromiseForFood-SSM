@@ -2,7 +2,7 @@ package com.hkd.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.hkd.domain.ProductShop;
-import com.hkd.mapper.SelectAreaProductShopByCode;
+import com.hkd.domain.SelectAreaProductShopByCode;
 import com.hkd.service.ProductShopService;
 import com.hkd.utils.Msg;
 import org.springframework.beans.factory.annotation.Autowired;

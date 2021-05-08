@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hkd.dao.ProductShowDao">
+    <select id="selectProductShowListByShopId" parameterType="Integer" resultType="com.hkd.domain.ProductShow">
+        select * from product_show where product_shop_id=#{id}
+    </select>
+
+    <update id="updateProductShowInfoById" parameterType="com.hkd.domain.ProductShow">
+        update product_show set
+                                product_show_title=#{productShowTitle},
+                                product_show_desc=#{productShowDesc},
+                                product_show_img=#{productShowImg},
+                                product_show_price=#{productShowPrice},
+                                product_show_extra=#{productShowExtra}
+        where product_show_id=#{productShowId}
+
+    </update>
+
+
+    <delete id="deleteProductShowInfoById" parameterType="Integer" >
+        delete from product_show where product_show_id=#{productShowId}
+    </delete>
+
+    <insert id="insertProductShowInfoByShopId" parameterType="com.hkd.domain.ProductShow">
+        insert into product_show
+            (product_show_title,product_show_desc,product_show_img,product_show_price,product_show_extra,product_shop_id)
+        values (#{productShowTitle},#{productShowDesc},#{productShowImg},#{productShowPrice},#{productShowExtra},#{productShopId})
+    </insert>
+</mapper>
