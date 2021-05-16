@@ -5,6 +5,8 @@ import com.hkd.domain.ProductShow;
 import com.hkd.service.ProductShowService;
 import com.hkd.utils.Msg;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,11 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/shopShow")
 public class ProductShowController {
+    /**
+     * debug
+     * info
+     * warn
+     * error
+     */
+    private static final Logger logger= LoggerFactory.getLogger(ProductShowController.class);
     @Autowired
     private ProductShowService productShowService;
 
@@ -25,8 +36,20 @@ public class ProductShowController {
     @RequestMapping("/getShopShowList")
     public Msg getShopShowList(@RequestParam Integer id){
         List<ProductShow> list=productShowService.getProductShowListByShopId(id);
-        System.out.println("【ProductShow】"+list.toString());
+        logger.debug("【debug|getShopShowList】:"+list.toString());
         return Msg.success().add("result", JSON.toJSONString(list));
+    }
+    @CrossOrigin
+    @ResponseBody
+    @RequestMapping("/getShopShowListLimitNumber")
+    public Msg getShopShowListLimitNumber(@RequestParam Integer id,@RequestParam Integer pageNum,@RequestParam Integer pageSize){
+        pageNum=(pageNum-1)*pageSize;//第几页
+        Map<String,Object> map = new HashMap<>();
+        map.put("id",id);
+        map.put("pageNum",pageNum);
+        map.put("pageSize",pageSize);
+        List<ProductShow> list=productShowService.getProductShowListByShopIdLimitNumber(map);
+        return Msg.success().add("result",JSON.toJSONString(list));
     }
 
     @ResponseBody

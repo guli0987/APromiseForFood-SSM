@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductShowServiceImpl implements ProductShowService {
@@ -15,6 +16,11 @@ public class ProductShowServiceImpl implements ProductShowService {
     @Override
     public List<ProductShow> getProductShowListByShopId(Integer id) {
         return productShowDao.selectProductShowListByShopId(id);
+    }
+
+    @Override
+    public List<ProductShow> getProductShowListByShopIdLimitNumber(Map<String, Object> param) {
+        return productShowDao.selectProductShowListByShopIdLimitNumber(param);
     }
 
     @Override
@@ -31,4 +37,5 @@ public class ProductShowServiceImpl implements ProductShowService {
     public Integer addProductShowInfoByShopId(ProductShow productShow) {
         return productShowDao.insertProductShowInfoByShopId(productShow);
     }
+
 }

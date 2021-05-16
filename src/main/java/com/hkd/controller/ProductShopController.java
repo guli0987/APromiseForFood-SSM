@@ -5,6 +5,8 @@ import com.hkd.domain.ProductShop;
 import com.hkd.domain.SelectAreaProductShopByCode;
 import com.hkd.service.ProductShopService;
 import com.hkd.utils.Msg;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,7 @@ import java.util.List;
 @RequestMapping("/shop")
 @Controller
 public class ProductShopController {
+    private static final Logger logger= LoggerFactory.getLogger(ProductShowController.class);
     @Autowired
     private ProductShopService productShopService;
 
@@ -29,7 +32,7 @@ public class ProductShopController {
     @CrossOrigin
     public Msg getShopInfoById(Integer id){
         List<ProductShop> data=productShopService.getProductShopById(id);
-        System.out.println("test:"+data.toString());
+        logger.debug("【debug|getShopInfo】"+data.toString());
         return Msg.success().add("result", JSON.toJSONString(data));
     }
 
@@ -43,7 +46,7 @@ public class ProductShopController {
     @CrossOrigin
     public Msg getShopAndAreaInfoById(Integer id){//返回单条数据，不是getShopInfoById一样的列表，所以前端无须取[0]，要长记性
         SelectAreaProductShopByCode data=productShopService.getProductShopAndAreaById(id);
-        System.out.println("test:"+data.toString());
+        logger.debug("【debug|getShopAndAreaInfo】"+data.toString());
         return Msg.success().add("result", JSON.toJSONString(data));
     }
 
@@ -56,12 +59,10 @@ public class ProductShopController {
     @ResponseBody
     @CrossOrigin
     public Msg modifyShopInfo(@RequestParam Integer id,@RequestParam String avatar,@RequestParam String name,@RequestParam Integer hot,@RequestParam String img,@RequestParam String extra) throws UnsupportedEncodingException {
-        //System.out.println("【测试乱码问题】："+img+"/");
         String imgList= URLDecoder.decode(img,"UTF-8");
-        //System.out.println("【测试乱码问题】："+imgList+"/");
         ProductShop productShop=new ProductShop(id,avatar,name,hot,imgList,extra,-1);
         Integer result=productShopService.modifyProductShopById(productShop);
-        System.out.println("结果:"+JSON.toJSONString(result));
+        logger.debug("【debug|modifyShopInfo】"+JSON.toJSONString(result));
         return Msg.success().add("result",JSON.toJSONString(result));
     }
 
@@ -74,7 +75,7 @@ public class ProductShopController {
     @ResponseBody
     public Msg removeShop(@RequestParam Integer id){
         Integer result=productShopService.removeProductShopById(id);
-        System.out.println("结果:"+JSON.toJSONString(result));
+        logger.debug("【debug|removeShop】"+JSON.toJSONString(result));
         return Msg.success().add("result",JSON.toJSONString(result));
     }
 

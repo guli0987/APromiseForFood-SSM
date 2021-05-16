@@ -5,6 +5,12 @@
         select * from product_show where product_shop_id=#{id}
     </select>
 
+
+    <select id="selectProductShowListByShopIdLimitNumber" resultType="com.hkd.domain.ProductShow">
+        select * from product_show where product_shop_id=#{id} limit #{pageNum},#{pageSize}
+    </select>
+
+
     <update id="updateProductShowInfoById" parameterType="com.hkd.domain.ProductShow">
         update product_show set
                                 product_show_title=#{productShowTitle},
