@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.hkd.domain.ProductShow;
 import com.hkd.service.ProductShowService;
 import com.hkd.utils.Msg;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +38,12 @@ public class ProductShowController {
         logger.debug("【debug|getShopShowList】:"+list.toString());
         return Msg.success().add("result", JSON.toJSONString(list));
     }
+
     @CrossOrigin
     @ResponseBody
     @RequestMapping("/getShopShowListLimitNumber")
     public Msg getShopShowListLimitNumber(@RequestParam Integer id,@RequestParam Integer pageNum,@RequestParam Integer pageSize){
-        pageNum=(pageNum-1)*pageSize;//第几页
+        pageNum=(pageNum-1)*pageSize;//第几页，这块要捕获异常，参数存在越界问题
         Map<String,Object> map = new HashMap<>();
         map.put("id",id);
         map.put("pageNum",pageNum);

@@ -9,6 +9,13 @@ import java.util.Map;
 @Repository
 public interface ProductShowDao {
     /**
+     * 根据商店id查询商品展示信息id列表
+     * @param id
+     * @return
+     */
+    List<Integer> selectProductShowIdListByShopId(Integer id);
+
+    /**
      * 根据商店id查询商品展示信息列表
      * @param id
      * @return

@@ -13,6 +13,12 @@ import java.util.Map;
 public class ProductShowServiceImpl implements ProductShowService {
     @Autowired
     private ProductShowDao productShowDao;
+
+    @Override
+    public List<Integer> getProductShowIdListByShopId(Integer id) {
+        return productShowDao.selectProductShowIdListByShopId(id);
+    }
+
     @Override
     public List<ProductShow> getProductShowListByShopId(Integer id) {
         return productShowDao.selectProductShowListByShopId(id);

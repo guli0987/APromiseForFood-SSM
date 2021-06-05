@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hkd.dao.ProductShowDao">
+    <select id="selectProductShowIdListByShopId" parameterType="Integer" resultType="Integer">
+        select product_show_id from product_show where product_shop_id=#{id}
+    </select>
+
+
     <select id="selectProductShowListByShopId" parameterType="Integer" resultType="com.hkd.domain.ProductShow">
         select * from product_show where product_shop_id=#{id}
     </select>

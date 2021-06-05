@@ -22,6 +22,8 @@
         <mapper resource="com/hkd/mapper/AreaMapper.xml"/>
         <mapper resource="com/hkd/mapper/ProductShopMapper.xml"/>
         <mapper resource="com/hkd/mapper/ProductShowMapper.xml"/>
+        <mapper resource="com/hkd/mapper/ProductInfoMapper.xml"/>
+        <mapper resource="com/hkd/mapper/ProductStockMapper.xml"/>
         <!-- 批量加载mapper 要与Dao在同一包 -->
         <!--<package name="com.hkd.mapper"/>-->
     </mappers>
